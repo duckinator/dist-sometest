@@ -4,16 +4,16 @@ members = ["cargo:."]
 # Config for 'dist'
 [dist]
 # The preferred dist version to use in CI (Cargo.toml SemVer syntax)
-cargo-dist-version = "0.24.0-prerelease.2"
+cargo-dist-version = "0.24.1"
 # CI backends to support
 ci = "github"
 # The installers to generate for each app
 installers = ["shell"]
 # Target platforms to build apps for (Rust target-triple syntax)
-targets = ["x86_64-unknown-linux-gnu"]
+targets = ["aarch64-apple-darwin", "x86_64-apple-darwin", "x86_64-unknown-linux-gnu", "x86_64-pc-windows-msvc"]
 # Path that installers should place binaries in
 install-path = "CARGO_HOME"
 # Whether to install an updater program
 install-updater = true
-# The minimum glibc version supported by the package (overrides auto-detection)
-#minimum-glibc-version = "2.18"
+# Embed data about the dependency tree into the executable, for auditing purposes
+auditable = true
