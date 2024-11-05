@@ -69,6 +69,16 @@ jobs:
         with:
           name: cargo-dist-cache
           path: ~/.cargo/bin/dist
+      - name: Install cargo-auditable
+        # we specify bash to get pipefail; it guards against the `curl` command
+        # failing. otherwise `sh` won't catch that `curl` return non-0
+        run: "curl --proto '=https' --tlsv1.2 -LsSf https://github.com/rust-secure-code/cargo-auditable/releases/latest/download/cargo-auditable-installer.sh | sh"
+        shell: bash
+      - name: Cache cargo-auditable
+        uses: actions/upload-artifact@v4
+        with:
+          name: cargo-auditable-cache
+          path: ~/.cargo/bin/cargo-auditable
       # sure would be cool if github gave us proper conditionals...
       # so here's a doubly-nested ternary-via-truthiness to try to provide the best possible
       # functionality based on whether this is a pull_request, and whether it's from a fork.
@@ -174,6 +184,12 @@ jobs:
           name: cargo-dist-cache
           path: ~/.cargo/bin/
       - run: chmod +x ~/.cargo/bin/dist
+      - name: Install cached cargo-auditable
+        uses: actions/download-artifact@v4
+        with:
+          name: cargo-auditable-cache
+          path: ~/.cargo/bin/
+      - run: chmod +x ~/.cargo/bin/cargo-auditable
       # Get all the local artifacts for the global tasks to use (for e.g. checksums)
       - name: Fetch local artifacts
         uses: actions/download-artifact@v4
@@ -223,6 +239,12 @@ jobs:
           name: cargo-dist-cache
           path: ~/.cargo/bin/
       - run: chmod +x ~/.cargo/bin/dist
+      - name: Install cached cargo-auditable
+        uses: actions/download-artifact@v4
+        with:
+          name: cargo-auditable-cache
+          path: ~/.cargo/bin/
+      - run: chmod +x ~/.cargo/bin/cargo-auditable
       # Fetch artifacts from scratch-storage
       - name: Fetch artifacts
         uses: actions/download-artifact@v4
