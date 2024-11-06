@@ -206,7 +206,7 @@ jobs:
       - id: cargo-cyclonedx
         shell: bash
         run: |
-            cargo cyclonedx -vvv
+            cargo cyclonedx -vv
 
             echo "paths<<EOF" >> "$GITHUB_OUTPUT"
             find . -name '*.cdx.xml' >> "$GITHUB_OUTPUT"
