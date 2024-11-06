@@ -16,4 +16,4 @@ install-path = "CARGO_HOME"
 # Whether to install an updater program
 install-updater = true
 # Whether to embed dependency information using cargo-auditable
-cargo-auditable = true
+#cargo-auditable = true
