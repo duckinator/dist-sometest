@@ -209,7 +209,7 @@ jobs:
             cargo cyclonedx
 
             echo "paths<<EOF" >> "$GITHUB_OUTPUT"
-            find . -name '*.cdx.xml'
+            find . -name '*.cdx.xml' >> "$GITHUB_OUTPUT"
             echo "EOF" >> "$GITHUB_OUTPUT"
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v4
