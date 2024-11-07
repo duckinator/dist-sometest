@@ -118,7 +118,7 @@ jobs:
         with:
           submodules: recursive
       - name: Install dist
-        run: ${{ matrix.install_dist }}
+        run: ${{ matrix.install_dist.run }}
       # Get the dist-manifest
       - name: Fetch local artifacts
         uses: actions/download-artifact@v4
@@ -127,10 +127,7 @@ jobs:
           path: target/distrib/
           merge-multiple: true
       - name: Install cargo-auditable
-        # we specify bash to get pipefail; it guards against the `curl` command
-        # failing. otherwise `sh` won't catch that `curl` return non-0
-        run: ${{ matrix.install_cargo_auditable }}
-        shell: bash
+        run: ${{ matrix.install_cargo_auditable.run }}
       - name: Install dependencies
         run: |
           ${{ matrix.packages_install }}
