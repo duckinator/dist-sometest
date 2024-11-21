@@ -4,7 +4,7 @@ members = ["cargo:."]
 # Config for 'dist'
 [dist]
 # The preferred dist version to use in CI (Cargo.toml SemVer syntax)
-cargo-dist-version = "0.25.1-github-glibc-per-target-override"
+cargo-dist-version = "0.26.0-github-omnibor"
 # CI backends to support
 ci = "github"
 # The installers to generate for each app
@@ -19,6 +19,8 @@ install-updater = true
 cargo-auditable = true
 # Whether to use cargo-cyclonedx to generate an SBOM
 cargo-cyclonedx = true
+# Whether to use omnibor-cli to generate OmniBOR Artifact IDs
+omnibor = true
 
 [dist.minimum-glibc-version]
 "*" = "2.17"
